@@ -59,12 +59,15 @@ public class Hangman {
 
     public static void main(String[] args) throws IOException {
         ReadFile readFile = new ReadFile();
+        UI ui = new UI();
          String filePath = "src/main/resources/slowa.txt";
         ArrayList<String> allWords = new ArrayList<>();
 
         allWords = readFile.fileReader(filePath);
 
         System.out.println(allWords);
+
+        ui.displayHiddenWord("Ala Ma Kota");
 
     }
 }
