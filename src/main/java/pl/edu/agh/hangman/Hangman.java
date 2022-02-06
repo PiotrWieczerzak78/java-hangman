@@ -64,7 +64,17 @@ public class Hangman {
 
         allWords = readFile.fileReader(filePath);
 
-        System.out.println(allWords);
+        Randomizer randomizer = new Randomizer(allWords);
+        String wordToFind = randomizer.random();
 
+        boolean endOfGame = false;
+
+        while (!endOfGame) {
+
+
+
+
+
+        }
     }
 }
