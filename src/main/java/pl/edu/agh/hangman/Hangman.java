@@ -1,5 +1,8 @@
 package pl.edu.agh.hangman;
 
+import java.io.IOException;
+import java.util.ArrayList;
+
 public class Hangman {
 
     public static final String[] HANGMANPICS = new String[]{
@@ -54,6 +57,14 @@ public class Hangman {
                     "========"
     };
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
+        ReadFile readFile = new ReadFile();
+         String filePath = "src/main/resources/slowa.txt";
+        ArrayList<String> allWords = new ArrayList<>();
+
+        allWords = readFile.fileReader(filePath);
+
+        System.out.println(allWords);
+
     }
 }
