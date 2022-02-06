@@ -69,39 +69,42 @@ public class Hangman {
 
         Randomizer randomizer = new Randomizer(allWords);
 
-
         boolean endOfGame = false;
         int iterator = 0;
 
 
         while (!endOfGame) {
 
-            String wordToFind = randomizer.random();
-
-
+            String wordToFind = randomizer.random().toUpperCase();
             ui.displayCurrentState(HANGMANPICS, iterator);
-
-            ui.displayHiddenWord(wordToFind);
-
+            ui.displayWord(wordToFind);
+            checkLetter.setWordToFind(wordToFind);
+            String hiddenWord = checkLetter.hideWord(wordToFind);
+            ui.displayWord(hiddenWord);
+            checkLetter.setWordHidden(hiddenWord);
             boolean letterGood;
+            boolean endParty = false;
+            int itemCounter=0;
+            while (!endParty) {
+                String word = inputLetter.getChar().toUpperCase();
 
-            for (int i=0; i < HANGMANPICS.length; i++) {
-
-                String word = inputLetter.getChar();
-
-
-                letterGood = checkLetter(word, wordToFind);
+                letterGood = checkLetter.checkLetters(word);
+                if (!letterGood) {
+                    itemCounter++;
+                }
+                    ui.displayCurrentState(HANGMANPICS, itemCounter);
+                    ui.displayWord(checkLetter.getWordHidden());
+                if (!checkLetter.checkFoundWord()){
+                    ui.displayInviteMessage("you won");
+                    endParty=true;
+                }
+                if(ui.endGame(HANGMANPICS, itemCounter)){
+                    ui.displayInviteMessage("you lost");
+                    endParty=true;
+                }
             }
 
-
-
-
-
-
-        ui.displayHiddenWord("Ala Ma Kota");
-
-
-
+            endOfGame = true;
         }
     }
 }

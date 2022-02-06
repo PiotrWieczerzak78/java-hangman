@@ -2,11 +2,8 @@ package pl.edu.agh.hangman;
 
 public class UI {
 
-    public void displayHiddenWord(String word){
-        int wordLength = word.length();
-        for (int i = 0; i < wordLength; i++) {
-            System.out.print("_");
-        }
+    public void displayWord(String word){
+            System.out.println(word);
     }
 
     public void displayInviteMessage(String message){
@@ -18,8 +15,8 @@ public class UI {
         return currentState+1;
     }
 
-    public boolean endGame(String word, int currentState){
-        if (word.length()== currentState){
+    public boolean endGame(String[] word, int currentState){
+        if (word.length-2< currentState){
             return true;
         }
         return false;
